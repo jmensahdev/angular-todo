@@ -1,0 +1,17 @@
+<form>
+    <div>
+        nom: 
+        <input type="text" name="label" [(ngModel)]="todo.label" >
+    </div>
+    <div>
+        description
+        <input type="text" name="description" [(ngModel)]="todo.description">
+    </div>
+    <div>
+        due Date
+        <input type="text" name="dueDate" placeholder="JJ/MM/AAAA" [(ngModel)]="todo.dueDate">
+    </div>
+
+    <button (click)="return()" >Retour</button>
+    <button (click)="addTodo()" > Ajouter </button>
+</form>

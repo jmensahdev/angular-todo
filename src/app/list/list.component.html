@@ -1,0 +1,60 @@
+<ng-container *ngIf="!showEdit; else edited">
+
+    <button (click)="goToAdd()">AJouter</button>
+
+    <table>
+        <thead>
+            <th>Task</th>
+            <th>description</th>
+            <th>Due date</th>
+            <th>complete</th>
+            <th>isDone</th>
+            <th>Edit</th>
+            <th>Delete</th>
+        </thead>
+        <tbody>
+            <ng-container *ngIf="todos.length > 0; else vide">
+                <tr *ngFor="let item of todos">
+                    <td>{{item.label}}</td>
+                    <td>{{item.description}}</td>
+                    <td>{{item.dueDate}}</td>
+                    <td>{{item.isComplete}}</td>
+                    <td>
+                        <button (click)="done(item.id)">Done</button>
+                    </td>
+                    <td>
+                        <button (click)="edit(item.id)">Edit</button>
+                    </td>
+                    <td>
+                        <button (click)="delete(item.id)">delete</button>
+                    </td>
+                </tr>
+
+            </ng-container>
+            <ng-template #vide>
+                <tr>
+                    <td colspan="3"> vide </td>
+                </tr>
+            </ng-template>
+        </tbody>
+    </table>
+</ng-container>
+<ng-template #edited>
+    <form>
+        <div>
+            nom:
+            <input type="text" name="label" [(ngModel)]="editTodo.label">
+        </div>
+        <div>
+            description
+            <input type="text" name="description" [(ngModel)]="editTodo.description">
+        </div>
+        <div>
+            due Date
+            <input type="text" name="dueDate" placeholder="JJ/MM/AAAA" [(ngModel)]="editTodo.dueDate">
+        </div>
+
+        <button (click)="return()">Retour</button>
+        <button (click)="saveEdit()"> Modifier </button>
+    </form>
+</ng-template>

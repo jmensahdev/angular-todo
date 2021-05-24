@@ -123,6 +123,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "todo"
+    }
+  },
+  "defaultProject": "todo",
+  "cli": {
+    "analytics": "81f111a3-dbed-4d01-9d23-a7768b6c6158"
+  }
 }
