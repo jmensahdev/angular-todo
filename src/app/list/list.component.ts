@@ -41,7 +41,10 @@ export class ListComponent implements OnInit {
   done(id: string): void {
     this.service.isDone(id);
     this.getAll();
-
+  }
+  undone(id: string): void {
+    this.service.isUnDone(id);
+    this.getAll();
   }
 
   saveEdit(): void {

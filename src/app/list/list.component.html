@@ -1,60 +1,78 @@
-<ng-container *ngIf="!showEdit; else edited">
-
-    <button (click)="goToAdd()">AJouter</button>
-
-    <table>
-        <thead>
-            <th>Task</th>
-            <th>description</th>
-            <th>Due date</th>
-            <th>complete</th>
-            <th>isDone</th>
-            <th>Edit</th>
-            <th>Delete</th>
-        </thead>
-        <tbody>
-            <ng-container *ngIf="todos.length > 0; else vide">
-                <tr *ngFor="let item of todos">
-                    <td>{{item.label}}</td>
-                    <td>{{item.description}}</td>
-                    <td>{{item.dueDate}}</td>
-                    <td>{{item.isComplete}}</td>
-                    <td>
-                        <button (click)="done(item.id)">Done</button>
-                    </td>
-                    <td>
-                        <button (click)="edit(item.id)">Edit</button>
-                    </td>
-                    <td>
-                        <button (click)="delete(item.id)">delete</button>
-                    </td>
-                </tr>
-
-            </ng-container>
-            <ng-template #vide>
-                <tr>
-                    <td colspan="3"> vide </td>
-                </tr>
-            </ng-template>
-        </tbody>
-    </table>
-</ng-container>
-<ng-template #edited>
-    <form>
-        <div>
-            nom:
-            <input type="text" name="label" [(ngModel)]="editTodo.label">
+<div class="pt-3 container">
+    <ng-container *ngIf="!showEdit; else edited">
+        <div class="mb-3">
+            <button class="btn btn-primary" (click)="goToAdd()">AJouter</button>
         </div>
-        <div>
-            description
-            <input type="text" name="description" [(ngModel)]="editTodo.description">
-        </div>
-        <div>
-            due Date
-            <input type="text" name="dueDate" placeholder="JJ/MM/AAAA" [(ngModel)]="editTodo.dueDate">
-        </div>
+        <div class=" d-flex">
+            <table class="table-hover table-bordered border-primary">
+                <thead>
+                    <th>Task</th>
+                    <th>description</th>
+                    <th>Due date</th>
+                    <th>complete</th>
+                    <th>isDone</th>
+                    <th>Edit</th>
+                    <th>Delete</th>
+                </thead>
+                <tbody>
+                    <ng-container *ngIf="todos.length > 0; else vide">
+                        <tr *ngFor="let item of todos">
+                            <td>{{item.label}}</td>
+                            <td>{{item.description}}</td>
+                            <td>{{item.dueDate}}</td>
+                            <td>{{item.isComplete}}</td>
+                            <td>
+                                <button *ngIf="item.isComplete" class="btn btn-sm btn-primary"
+                                    (click)="undone(item.id)">Undone</button>
+                                <button *ngIf="!item.isComplete" class="btn btn-sm btn-primary"
+                                    (click)="done(item.id)">Done</button>
+                            </td>
+                            <td>
+                                <button class="btn btn-sm btn-info" (click)="edit(item.id)">Edit</button>
+                            </td>
+                            <td>
+                                <button class="btn btn-sm btn-danger" (click)="delete(item.id)">delete</button>
+                            </td>
+                        </tr>
 
-        <button (click)="return()">Retour</button>
-        <button (click)="saveEdit()"> Modifier </button>
-    </form>
-</ng-template>
+                    </ng-container>
+                    <ng-template #vide>
+                        <tr>
+                            <td colspan="3"> vide </td>
+                        </tr>
+                    </ng-template>
+                </tbody>
+            </table>
+        </div>
+    </ng-container>
+    <ng-template #edited>
+        <div class="card">
+            <div class="card-header">
+                <h5>Edit todo item "{{editTodo.id}}"</h5>
+            </div>
+            <div class="card-body">
+                <form >
+                <div class="form-floating mb-3">
+                    <input type="text" name="label" [(ngModel)]="editTodo.label" class="form-control"
+                        id="floatingInput">
+                    <label for="floatingInput">nom:</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <input type="text" name="description" [(ngModel)]="editTodo.description" class="form-control"
+                        id="floatingInput1">
+                    <label for="floatingInput1">description:</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <input type="text" name="dueDate" [(ngModel)]="editTodo.dueDate" class="form-control"
+                        id="floatingInput1">
+                    <label for="floatingInput1">due Date:</label>
+                </div>
+                <div class="d-flex justify-content-between">
+                    <button class="btn btn-primary" (click)="return()">Back</button>
+                    <button class=" ml-3 btn btn-success" (click)="saveEdit()"> Update </button>
+                </div>
+            </form>
+            </div>
+        </div>
+    </ng-template>
+</div>

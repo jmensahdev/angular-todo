@@ -1,17 +1,31 @@
-<form>
-    <div>
-        nom: 
-        <input type="text" name="label" [(ngModel)]="todo.label" >
-    </div>
-    <div>
-        description
-        <input type="text" name="description" [(ngModel)]="todo.description">
-    </div>
-    <div>
-        due Date
-        <input type="text" name="dueDate" placeholder="JJ/MM/AAAA" [(ngModel)]="todo.dueDate">
-    </div>
 
-    <button (click)="return()" >Retour</button>
-    <button (click)="addTodo()" > Ajouter </button>
-</form>
+<div class="container mt-5">
+    <div class="card">
+        <div class="card-header">
+        <h5>Add Todo</h5>
+    </div>
+    <div class="card-body">
+        <form >
+            <div class="form-floating mb-3">
+                <input type="text" name="label" [(ngModel)]="todo.label" class="form-control"
+                id="floatingInput">
+                <label for="floatingInput">nom:</label>
+            </div>
+            <div class="form-floating mb-3">
+                <input type="text" name="description" [(ngModel)]="todo.description" class="form-control"
+                id="floatingInput1">
+                <label for="floatingInput1">description:</label>
+            </div>
+            <div class="form-floating mb-3">
+                <input type="text" name="dueDate" [(ngModel)]="todo.dueDate" class="form-control"
+                id="floatingInput1">
+                <label for="floatingInput1">due Date:</label>
+            </div>
+            <div class="d-flex justify-content-between">
+                <button class="btn btn-primary" (click)="return()">Back</button>
+                <button class=" ml-3 btn btn-success" (click)="addTodo()"> Add </button>
+            </div>
+        </form>
+    </div>
+</div>
+</div>

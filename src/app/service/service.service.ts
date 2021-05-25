@@ -30,12 +30,22 @@ export class ServiceService {
     return oldTodos.find(x => x.id === id);
   }
   
-  isDone(id: string): boolean {
-    console.log('isdone');
-    
+  isDone(id: string): boolean {    
     try {
       const oldTodos: Todo[] = localStorage.getItem('todos') ? JSON.parse(localStorage.getItem('todos')) : [];
       oldTodos[oldTodos.findIndex(x => x.id === id)].isComplete = true;
+      localStorage.setItem('todos', JSON.stringify(oldTodos));
+      return true
+    } catch (error) {
+      return false;
+    }
+  }
+
+  
+  isUnDone(id: string): boolean {    
+    try {
+      const oldTodos: Todo[] = localStorage.getItem('todos') ? JSON.parse(localStorage.getItem('todos')) : [];
+      oldTodos[oldTodos.findIndex(x => x.id === id)].isComplete = false;
       localStorage.setItem('todos', JSON.stringify(oldTodos));
       return true
     } catch (error) {
