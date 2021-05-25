@@ -8,11 +8,23 @@ export class ServiceService {
 
   todo = null;
   constructor() { }
+  // i Use local storage to save my todos list
 
+  /**
+   * 
+   * @returns 
+   * @description Get All todo on localStorage
+   */
   getTodo() : Todo[] {
     return localStorage.getItem('todos') ? JSON.parse(localStorage.getItem('todos')) : [];
   }
 
+  /**
+   * 
+   * @param todo 
+   * @returns 
+   * @description Add on todo to list
+   */
   addTodo(todo: Todo): boolean {
     // recupération des todos du localstorages
     try {
@@ -25,6 +37,12 @@ export class ServiceService {
     }
   }
 
+  /**
+   * 
+   * @param id 
+   * @returns 
+   * @description search on todo item
+   */
   getOneTodo(id: string):Todo {
     const oldTodos: Todo[] = localStorage.getItem('todos') ? JSON.parse(localStorage.getItem('todos')) : [];
     return oldTodos.find(x => x.id === id);
@@ -53,6 +71,12 @@ export class ServiceService {
     }
   }
 
+  /**
+   * 
+   * @param todo todo item
+   * @returns new todo
+   * @description edit todo item by id
+   */
   editTodo(todo: Todo): Todo {
     try {
       const oldTodos: Todo[] = localStorage.getItem('todos') ? JSON.parse(localStorage.getItem('todos')) : [];
@@ -67,7 +91,12 @@ export class ServiceService {
     }
   }
 
-
+/**
+ * 
+ * @param id 
+ * @returns true if success
+ * @description delete todo by id
+ */
   deleteTodo(id): boolean {
     try {
       let oldTodos: Todo[] = localStorage.getItem('todos') ? JSON.parse(localStorage.getItem('todos')) : [];

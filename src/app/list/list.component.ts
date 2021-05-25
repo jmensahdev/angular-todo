@@ -24,6 +24,9 @@ export class ListComponent implements OnInit {
     this.getAll();
   }
 
+  /**
+   * @description get all todo to this.todos
+   */
   getAll(): void {
     this.todos = this.service.getTodo();
   }
@@ -38,33 +41,58 @@ export class ListComponent implements OnInit {
     }
   }
 
+  /**
+   * 
+   * @description set todo item to complete
+   */
   done(id: string): void {
     this.service.isDone(id);
     this.getAll();
   }
+
+  /**
+   * 
+   * @description set todo item to undone
+   */
   undone(id: string): void {
     this.service.isUnDone(id);
     this.getAll();
   }
 
+  /**
+   * @description Edited on todo
+   */
   saveEdit(): void {
     this.service.editTodo(this.editTodo);
     this.return();
   }
 
+  /**
+   * @description navigate to add interface
+   */
   goToAdd(): void {
     this.router.navigate(['/add']);
   }
 
+  /**
+   * @description return to list and refresh todos list
+   */
   return(): void {
     this.getAll();
     this.showEdit = false;
   }
 
+  /**
+   * 
+   * @param id todo item
+   * @description delete one todo by id and refresh list
+   */
   delete(id: string): void {
     this.service.deleteTodo(id);
     this.getAll();
 
   }
+
+  // thank for whating :)
 
 }

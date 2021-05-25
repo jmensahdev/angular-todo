@@ -1,3 +1,4 @@
+<!--  list all todo item -->
 <div class="pt-3 container">
     <ng-container *ngIf="!showEdit; else edited">
         <div class="mb-3">
@@ -15,7 +16,9 @@
                     <th>Delete</th>
                 </thead>
                 <tbody>
+                    <!-- ngIf to hide list when todo array empty -->
                     <ng-container *ngIf="todos.length > 0; else vide">
+                        <!-- a ngFor to loop all todo item -->
                         <tr *ngFor="let item of todos">
                             <td>{{item.label}}</td>
                             <td>{{item.description}}</td>
@@ -25,12 +28,9 @@
                                 <span *ngIf="item.isComplete" (click)="undone(item.id)">
                                     <i class="text-danger bi bi-toggle2-off"></i>
                                 </span>
-                                <!-- <button  class="btn btn-sm btn-primary"
-                                    > -->
                                     <span *ngIf="!item.isComplete" (click)="done(item.id)">
                                         <i class="text-success bi bi-toggle2-on"></i>
                                     </span>
-                                <!-- </button> -->
                             </td>
                             <td>
                                 <button class="btn btn-sm btn-info" (click)="edit(item.id)">
@@ -55,6 +55,7 @@
         </div>
     </ng-container>
     <ng-template #edited>
+        <!-- for edit one item -->
         <div class="card">
             <div class="card-header">
                 <h5>Edit todo item "{{editTodo.id}}"</h5>
