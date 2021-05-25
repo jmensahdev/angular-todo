@@ -22,16 +22,25 @@
                             <td>{{item.dueDate}}</td>
                             <td>{{item.isComplete}}</td>
                             <td>
-                                <button *ngIf="item.isComplete" class="btn btn-sm btn-primary"
-                                    (click)="undone(item.id)">Undone</button>
-                                <button *ngIf="!item.isComplete" class="btn btn-sm btn-primary"
-                                    (click)="done(item.id)">Done</button>
+                                <span *ngIf="item.isComplete" (click)="undone(item.id)">
+                                    <i class="text-danger bi bi-toggle2-off"></i>
+                                </span>
+                                <!-- <button  class="btn btn-sm btn-primary"
+                                    > -->
+                                    <span *ngIf="!item.isComplete" (click)="done(item.id)">
+                                        <i class="text-success bi bi-toggle2-on"></i>
+                                    </span>
+                                <!-- </button> -->
                             </td>
                             <td>
-                                <button class="btn btn-sm btn-info" (click)="edit(item.id)">Edit</button>
+                                <button class="btn btn-sm btn-info" (click)="edit(item.id)">
+                                    <i class="bi bi-pencil-square"></i>
+                                </button>
                             </td>
                             <td>
-                                <button class="btn btn-sm btn-danger" (click)="delete(item.id)">delete</button>
+                                <button class="btn btn-sm btn-danger" (click)="delete(item.id)">
+                                    <i class="bi bi-trash"></i>
+                                </button>
                             </td>
                         </tr>
 
